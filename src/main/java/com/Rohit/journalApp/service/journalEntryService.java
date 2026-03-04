@@ -4,11 +4,13 @@ import com.Rohit.journalApp.entity.JournalEntry;
 import com.Rohit.journalApp.repository.journalEntryRepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.aggregation.DateOperators;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +32,10 @@ public class journalEntryService{
         return journalEntryRepo.findById(id);
     }
 
+    public void setDate(JournalEntry myEntry){
+        myEntry.setDate(LocalDateTime.now());
+    }
+
     public void deleteById(ObjectId id){
         journalEntryRepo.deleteById(id);
     }
@@ -45,7 +51,5 @@ public class journalEntryService{
         else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
-
     }
 }
