@@ -32,7 +32,7 @@ public class UserController {
         }
     }
 
-    @PutMapping
+    @PostMapping
     public ResponseEntity<?> createUser(@RequestBody UserEntry newUser){
         try {
             userService.saveEntry(newUser);
@@ -58,5 +58,16 @@ public class UserController {
     public ResponseEntity<?> deleteById(@PathVariable ObjectId ID){
         userService.deleteById(ID);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping("/updateuser/{userName}")
+    public ResponseEntity<?> findByUserName(@RequestBody UserEntry userEntry , @PathVariable String userName){
+        UserEntry user = userService.FindByUserName(userName);
+        if (user != null){
+            user.setUserName(userEntry.getUserName());
+            user.setPassword(userEntry.getPassword());
+            userService.saveEntry(user);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -1,6 +1,7 @@
 package com.Rohit.journalApp.service;
 
 import com.Rohit.journalApp.entity.JournalEntry;
+import com.Rohit.journalApp.entity.UserEntry;
 import com.Rohit.journalApp.repository.journalEntryRepo;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,16 @@ public class journalEntryService{
     @Autowired
     private journalEntryRepo journalEntryRepo;
 
+    @Autowired
+    private UserService userService;
+
+    public void saveEntry(JournalEntry journalEntry , String userName){
+        UserEntry userEntry = userService.FindByUserName(userName);
+        JournalEntry journalEntry1 = journalEntryRepo.save(journalEntry);
+        userEntry.getJournalEntries().add(journalEntry1);
+        userService.saveEntry(userEntry);
+    }
+
     public void saveEntry(JournalEntry journalEntry){
         journalEntryRepo.save(journalEntry);
     }
@@ -36,14 +47,17 @@ public class journalEntryService{
         myEntry.setDate(LocalDateTime.now());
     }
 
-    public void deleteById(ObjectId id){
+    public void deleteById(ObjectId id , String userName){
+        UserEntry userEntry = userService.FindByUserName(userName);
         journalEntryRepo.deleteById(id);
+        userEntry.getJournalEntries().removeIf(X -> X.getId().equals(id));
+        userService.saveEntry(userEntry);
     }
 
     public ResponseEntity<?> updateById(ObjectId id, JournalEntry UpdateEntry){
         JournalEntry old = journalEntryRepo.findById(id).orElse(null);
         if(old != null){
-            old.setTitle(UpdateEntry.getTitle() != null && !UpdateEntry.getTitle().equals("") ? UpdateEntry.getTitle() : old.getTitle() );
+            old.setTitle(!UpdateEntry.getTitle().equals("") ? UpdateEntry.getTitle() : old.getTitle());
             old.setContent(UpdateEntry.getContent() != null && !UpdateEntry.getContent().equals("") ? UpdateEntry.getContent() : old.getContent() );
             journalEntryRepo.save(old);
             return new ResponseEntity<>(old,HttpStatus.CREATED);
