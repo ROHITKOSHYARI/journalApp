@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,11 +25,18 @@ public class journalEntryService{
     @Autowired
     private UserService userService;
 
+    @Transactional
     public void saveEntry(JournalEntry journalEntry , String userName){
-        UserEntry userEntry = userService.FindByUserName(userName);
-        JournalEntry journalEntry1 = journalEntryRepo.save(journalEntry);
-        userEntry.getJournalEntries().add(journalEntry1);
-        userService.saveEntry(userEntry);
+        try {
+            UserEntry userEntry = userService.FindByUserName(userName);
+            JournalEntry journalEntry1 = journalEntryRepo.save(journalEntry);
+            userEntry.getJournalEntries().add(journalEntry1);
+            userService.saveEntry(userEntry);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            throw new RuntimeException("An error occurred while Saving the entry "+e);
+        }
     }
 
     public void saveEntry(JournalEntry journalEntry){
