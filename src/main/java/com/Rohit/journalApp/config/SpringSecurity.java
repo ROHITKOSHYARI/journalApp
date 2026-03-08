@@ -35,10 +35,8 @@ public class SpringSecurity {
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }

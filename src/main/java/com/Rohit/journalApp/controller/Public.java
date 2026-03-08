@@ -22,12 +22,11 @@ public class Public {
     @PostMapping("/create_user")
     public ResponseEntity<?> createUser(@RequestBody UserEntry newUser){
         try {
-            userService.saveEntry(newUser);
+            userService.saveNewEntry(newUser);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }
         catch (Exception e){
             return  new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }
     }
-
 }
