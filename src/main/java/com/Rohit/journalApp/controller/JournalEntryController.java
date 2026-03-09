@@ -61,7 +61,6 @@ public class JournalEntryController {
         }catch(Exception e){
             return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
         }
-
     }
 
     @GetMapping("/ID/{getID}")
@@ -80,18 +79,22 @@ public class JournalEntryController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("/ID/{getID}")
+    @DeleteMapping("/deleteID/{getID}")
     public ResponseEntity<?> deleteByIDAndUserName(@PathVariable ObjectId getID) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
         List<JournalEntry> collection = userService.FindByUserName(userName).getJournalEntries().stream().filter(x->x.getId().equals(getID)).toList();
-
+        boolean removed = false;
         if(!collection.isEmpty()){
-            journalEntryService.deleteById(getID , userName);
+            removed =  journalEntryService.deleteById(getID , userName);
         }
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        if(removed) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else{
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PutMapping("/Update/{getID}")

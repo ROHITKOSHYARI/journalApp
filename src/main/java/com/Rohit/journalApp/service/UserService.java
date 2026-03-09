@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -24,11 +25,16 @@ public class UserService {
     }
 
     public void saveNewEntry(UserEntry userEntry){
-        userEntry.setPassword(passwordEncoder.encode(userEntry.getPassword()));
+        userEntry.setPassword(Objects.requireNonNull(passwordEncoder.encode(userEntry.getPassword())));
 //        fixed size array
         userEntry.setRoles(List.of("USER"));
         userRepo.save(userEntry);
+    }
 
+    public void saveNewADMIN(UserEntry userEntry){
+        userEntry.setPassword(Objects.requireNonNull(passwordEncoder.encode(userEntry.getPassword())));
+        userEntry.setRoles(List.of("USER","ADMIN"));
+        userRepo.save(userEntry);
     }
 
     public List<UserEntry> getAll(){

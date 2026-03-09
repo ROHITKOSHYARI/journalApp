@@ -23,19 +23,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
-    public ResponseEntity<?> getAll(){
-        List<UserEntry> list = userService.getAll();
-        if(list != null && !list.isEmpty()){
-            return new ResponseEntity<>(list, HttpStatus.OK);
-        }
-        else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
     @PostMapping("/get/{ID}")
-    public ResponseEntity<?> post(@PathVariable ObjectId ID) {
+    public ResponseEntity<?> findById(@PathVariable ObjectId ID) {
         Optional<UserEntry> user = userService.findByID(ID);
         if(user.isPresent()){
             return new ResponseEntity<>(user , HttpStatus.OK);
@@ -71,4 +60,4 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-//$2a$10$XDFQ2DDJG7GawUk0f2ayB.hjko/C5dfQgPgZ7dwF0AFqDJ4bqe2CO
+

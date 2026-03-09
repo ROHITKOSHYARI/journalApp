@@ -55,11 +55,20 @@ public class journalEntryService{
         myEntry.setDate(LocalDateTime.now());
     }
 
-    public void deleteById(ObjectId id , String userName){
-        UserEntry userEntry = userService.FindByUserName(userName);
-        journalEntryRepo.deleteById(id);
-        userEntry.getJournalEntries().removeIf(X -> X.getId().equals(id));
-        userService.saveEntry(userEntry);
+    @Transactional
+    public boolean deleteById(ObjectId id , String userName){
+        boolean removed = false;
+        try {
+            UserEntry userEntry = userService.FindByUserName(userName);
+            removed = userEntry.getJournalEntries().removeIf(X -> X.getId().equals(id));
+            if (removed){
+                userService.saveEntry(userEntry);
+                journalEntryRepo.deleteById(id);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("An error occurred while deleting the entry :"+e);
+        }
+        return removed;
     }
 
     public ResponseEntity<?> updateById(ObjectId id, JournalEntry UpdateEntry){
