@@ -4,6 +4,8 @@ import com.Rohit.journalApp.entity.JournalEntry;
 import com.Rohit.journalApp.entity.UserEntry;
 import com.Rohit.journalApp.repository.journalEntryRepo;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.aggregation.DateOperators;
 import org.springframework.http.HttpStatus;

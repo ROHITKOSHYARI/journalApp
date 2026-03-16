@@ -3,6 +3,8 @@ package com.Rohit.journalApp.service;
 import com.Rohit.journalApp.entity.UserEntry;
 import com.Rohit.journalApp.repository.UserRepo;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +20,9 @@ public class UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     public static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     public void saveEntry(UserEntry userEntry){
@@ -25,10 +30,15 @@ public class UserService {
     }
 
     public void saveNewEntry(UserEntry userEntry){
-        userEntry.setPassword(Objects.requireNonNull(passwordEncoder.encode(userEntry.getPassword())));
+        try {
+            userEntry.setPassword(Objects.requireNonNull(passwordEncoder.encode(userEntry.getPassword())));
 //        fixed size array
-        userEntry.setRoles(List.of("USER"));
-        userRepo.save(userEntry);
+            userEntry.setRoles(List.of("USER"));
+            userRepo.save(userEntry);
+        } catch (Exception e) {
+            logger.error("error occured : ",e);
+            throw new RuntimeException(e);
+        }
     }
 
     public void saveNewADMIN(UserEntry userEntry){

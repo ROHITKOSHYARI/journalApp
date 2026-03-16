@@ -1,0 +1,7 @@
+spring:
+  mongodb:
+    uri: mongodb+srv://Rohit:7244@cluster0.0jnpmh7.mongodb.net/?appName=Cluster0
+    database: journaldb
+  data:
+    mongodb:
+      auto-index-creation: true
