@@ -1,29 +1,20 @@
-package com.Rohit.journalApp.controller;
+package com.Rohit.journalapp.controller;
 
-import com.Rohit.journalApp.JournalApplication;
-import com.Rohit.journalApp.entity.JournalEntry;
-import com.Rohit.journalApp.entity.UserEntry;
-import com.Rohit.journalApp.service.UserService;
-import com.Rohit.journalApp.service.journalEntryService;
-import org.apache.catalina.User;
+import com.Rohit.journalapp.entity.JournalEntry;
+import com.Rohit.journalapp.entity.UserEntry;
+import com.Rohit.journalapp.service.UserService;
+import com.Rohit.journalapp.service.journalEntryService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/journal")

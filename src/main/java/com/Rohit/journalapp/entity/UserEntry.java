@@ -1,4 +1,4 @@
-package com.Rohit.journalApp.entity;
+package com.Rohit.journalapp.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

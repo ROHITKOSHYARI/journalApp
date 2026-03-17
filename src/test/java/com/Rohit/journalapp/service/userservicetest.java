@@ -1,6 +1,6 @@
-package com.Rohit.journalApp.service;
+package com.Rohit.journalapp.service;
 
-import com.Rohit.journalApp.repository.UserRepo;
+import com.Rohit.journalapp.repository.UserRepo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

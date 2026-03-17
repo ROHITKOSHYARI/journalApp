@@ -1,7 +1,7 @@
-package com.Rohit.journalApp.controller;
+package com.Rohit.journalapp.controller;
 
-import com.Rohit.journalApp.entity.UserEntry;
-import com.Rohit.journalApp.service.UserService;
+import com.Rohit.journalapp.entity.UserEntry;
+import com.Rohit.journalapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

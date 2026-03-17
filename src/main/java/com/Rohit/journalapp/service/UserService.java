@@ -1,27 +1,24 @@
-package com.Rohit.journalApp.service;
+package com.Rohit.journalapp.service;
 
-import com.Rohit.journalApp.entity.UserEntry;
-import com.Rohit.journalApp.repository.UserRepo;
+import com.Rohit.journalapp.entity.UserEntry;
+import com.Rohit.journalapp.repository.UserRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
     private UserRepo userRepo;
-
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -36,7 +33,12 @@ public class UserService {
             userEntry.setRoles(List.of("USER"));
             userRepo.save(userEntry);
         } catch (Exception e) {
-            logger.error("error occured : ",e);
+//            log.error("error occured for {} : ",userEntry.getUserName(),e);
+            log.error("asdf");
+            log.warn("asdf");
+            log.info("asdf");
+            log.debug("asdf");
+            log.trace("asdf");
             throw new RuntimeException(e);
         }
     }

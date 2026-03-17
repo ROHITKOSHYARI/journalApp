@@ -96,7 +96,15 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+			</plugin>
+
 		</plugins>
 	</build>
 
 </project>
+
+<!--sonarqubit token-->
+<!--squ_575475d555c0ead2bc4f93ceaf060baaf7ff9d9f-->

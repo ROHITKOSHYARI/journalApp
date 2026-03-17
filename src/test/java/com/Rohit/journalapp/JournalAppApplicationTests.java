@@ -1,6 +1,5 @@
-package com.Rohit.journalApp;
+package com.Rohit.journalapp;
 
-import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest

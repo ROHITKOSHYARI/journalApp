@@ -1,15 +1,11 @@
-package com.Rohit.journalApp.service;
+package com.Rohit.journalapp.service;
 
-import com.Rohit.journalApp.entity.JournalEntry;
-import com.Rohit.journalApp.entity.UserEntry;
-import com.Rohit.journalApp.repository.journalEntryRepo;
+import com.Rohit.journalapp.entity.JournalEntry;
+import com.Rohit.journalapp.entity.UserEntry;
+import com.Rohit.journalapp.repository.journalEntryRepo;
 import org.bson.types.ObjectId;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.aggregation.DateOperators;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

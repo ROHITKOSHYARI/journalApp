@@ -1,9 +1,8 @@
-package com.Rohit.journalApp.service;
+package com.Rohit.journalapp.service;
 
-import com.Rohit.journalApp.entity.UserEntry;
-import com.Rohit.journalApp.repository.UserRepo;
+import com.Rohit.journalapp.entity.UserEntry;
+import com.Rohit.journalapp.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
