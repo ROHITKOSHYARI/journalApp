@@ -2,6 +2,7 @@ package com.Rohit.journalapp.controller;
 
 import com.Rohit.journalapp.entity.UserEntry;
 import com.Rohit.journalapp.service.UserService;
+import com.Rohit.journalapp.service.WetherService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -18,6 +20,17 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private WetherService wetherService;
+
+    @PostMapping()
+    public ResponseEntity<?> hellouser(){
+        String username =  Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getName();
+        int tempratere = wetherService.getWether("Mumbai").getCurrent().getFeelsLike();
+        return new ResponseEntity<>("hello " + username + " wether feels like " + tempratere+" degree celcious", HttpStatus.OK);
+
+    }
 
     @PostMapping("/get/{ID}")
     public ResponseEntity<?> findById(@PathVariable ObjectId ID) {
