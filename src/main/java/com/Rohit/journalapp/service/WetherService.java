@@ -2,6 +2,7 @@ package com.Rohit.journalapp.service;
 
 import com.Rohit.journalapp.api.response.WetherResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -9,7 +10,9 @@ import org.springframework.web.client.RestTemplate;
 
 @Component
 public class WetherService {
-    private static final String apikey = "7a007a6dfcc4c915da7bae867f646a66";
+
+    @Value("${Weather.api.key}")
+    private  String apikey;
 
     private static final String API = "https://api.weatherstack.com/current?access_key=API_KEY&query=CITY_NAME";
 

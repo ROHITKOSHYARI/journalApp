@@ -28,3 +28,6 @@ public class JournalApplication {
 	}
 
 }
+
+//Eleven API key
+//2fe19728384b909feb2ea8ebe4c3fa654e13e2be26a1b83c1607270ed4cb556b
