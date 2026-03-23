@@ -1,3 +1,0 @@
-19:03:49:799 [http-nio-8080-exec-2] ERROR c.R.journalApp.service.UserService - asdf
-19:03:49:802 [http-nio-8080-exec-2] WARN  c.R.journalApp.service.UserService - asdf
-19:03:49:802 [http-nio-8080-exec-2] INFO  c.R.journalApp.service.UserService - asdf
