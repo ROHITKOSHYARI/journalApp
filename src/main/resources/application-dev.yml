@@ -6,6 +6,18 @@ spring:
     mongodb:
       auto-index-creation: true
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rohitkoshyari7244@gmail.com
+    password: fxcr aedk yhkv eqfe
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 
 
 #server:

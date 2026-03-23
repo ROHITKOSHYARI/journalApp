@@ -1,6 +1,7 @@
 package com.Rohit.journalapp.service;
 
 import com.Rohit.journalapp.api.response.WetherResponse;
+import com.Rohit.journalapp.cache.AppCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -19,8 +20,11 @@ public class WetherService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private AppCache appCache;
+
     public WetherResponse getWether(String city){
-        String url = API.replace("API_KEY",apikey).replace("CITY_NAME",city);
+        String url = appCache.APP_CACHE.get("weather_key").replace("API_KEY",apikey).replace("CITY_NAME",city);
         ResponseEntity<WetherResponse> response = restTemplate.exchange(url, HttpMethod.GET, null, WetherResponse.class);
         return response.getBody();
     }

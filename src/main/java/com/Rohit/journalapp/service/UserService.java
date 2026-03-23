@@ -35,10 +35,6 @@ public class UserService {
         } catch (Exception e) {
 //            log.error("error occured for {} : ",userEntry.getUserName(),e);
             log.error("asdf");
-            log.warn("asdf");
-            log.info("asdf");
-            log.debug("asdf");
-            log.trace("asdf");
             throw new RuntimeException(e);
         }
     }
