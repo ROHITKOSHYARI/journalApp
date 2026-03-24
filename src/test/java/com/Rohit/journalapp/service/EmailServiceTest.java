@@ -12,6 +12,6 @@ public class EmailServiceTest {
 
     @Test
     public void emailtest(){
-        emailService.sendEmail("rohitkoshyari12@gmail.com","Testing java email sender","testing mail ");
+        emailService.sendEmail("deepalikala04@gmail.com","Testing java email sender","testing mail ");
     }
 }
