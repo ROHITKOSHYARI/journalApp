@@ -1,5 +1,6 @@
 package com.Rohit.journalapp.entity;
 
+import com.Rohit.journalapp.Enum.Sentiment;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -19,6 +20,7 @@ public class JournalEntry {
     private String title;
 
     private String content;
+    private Sentiment sentiment;
 
     private LocalDateTime date;
 }
