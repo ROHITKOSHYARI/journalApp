@@ -15,7 +15,7 @@ public class WetherService {
     @Value("${Weather.api.key}")
     private  String apikey;
 
-    private static final String API = "https://api.weatherstack.com/current?access_key=API_KEY&query=CITY_NAME";
+    private static final String API = "http://api.weatherstack.com/current?access_key=API_KEY&query=CITY_NAME";
 
     @Autowired
     private RestTemplate restTemplate;
@@ -23,9 +23,20 @@ public class WetherService {
     @Autowired
     private AppCache appCache;
 
+    @Autowired
+    RedisService redisService;
+
     public WetherResponse getWether(String city){
-        String url = appCache.APP_CACHE.get("weather_key").replace("API_KEY",apikey).replace("CITY_NAME",city);
-        ResponseEntity<WetherResponse> response = restTemplate.exchange(url, HttpMethod.GET, null, WetherResponse.class);
-        return response.getBody();
+        WetherResponse wetherResponse = redisService.get("Weather_of_" + city, WetherResponse.class);
+        if(wetherResponse != null){
+            return wetherResponse;
+        }
+        else{
+            String url = appCache.APP_CACHE.get("weather_key").replace("API_KEY",apikey).replace("CITY_NAME",city);
+            ResponseEntity<WetherResponse> response = restTemplate.exchange(url, HttpMethod.GET, null, WetherResponse.class);
+            WetherResponse body = response.getBody();
+            redisService.set("Weather_of_"+city, body, 300L);
+            return body;
+        }
     }
 }

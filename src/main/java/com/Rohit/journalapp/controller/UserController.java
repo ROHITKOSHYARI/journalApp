@@ -27,9 +27,8 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<?> hellouser(){
         String username =  Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getName();
-        int tempratere = wetherService.getWether("Mumbai").getCurrent().getFeelsLike();
+        int tempratere = wetherService.getWether("Dehradun").getCurrent().getFeelsLike();
         return new ResponseEntity<>("hello " + username + " wether feels like " + tempratere+" degree celcious", HttpStatus.OK);
-
     }
 
     @PostMapping("/get/{ID}")

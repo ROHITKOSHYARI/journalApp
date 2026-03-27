@@ -3,4 +3,4 @@ spring:
     active: dev
 Weather:
   api:
-    key: 7a007a6dfcc4c915da7bae867f646a66
+    key: 4ac8d4a875f3606da7f5a7efda9ce821
