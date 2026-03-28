@@ -31,7 +31,6 @@ public class JournalApplication {
 	RestTemplate restTemplate(){
 		return new RestTemplate();
 	}
-
 }
 
 //Eleven API key

@@ -4,8 +4,7 @@ spring:
     database: journaldb
   data:
     redis:
-      host: localhost
-      port: 6379
+      url: redis://default:MrBJnBJxd0IABGOckJpTwcHTKjppuzmT@redis-11993.c330.asia-south1-1.gce.cloud.redislabs.com:11993
     mongodb:
       auto-index-creation: true
 
