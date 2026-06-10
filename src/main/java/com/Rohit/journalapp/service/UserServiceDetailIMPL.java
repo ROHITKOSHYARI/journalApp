@@ -25,7 +25,5 @@ public class UserServiceDetailIMPL implements UserDetailsService {
                     .build();
         }
         throw new UsernameNotFoundException("User not found with username: " + username);
-
-
     }
 }
